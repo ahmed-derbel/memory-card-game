@@ -24,7 +24,6 @@ body {
 
 .replay {
     border: none;
-    border-radius: 10px;
     background-color: rgba(162, 190, 201, 0);
     outline-style: none !important;
     color: #2e3d49;
@@ -38,10 +37,9 @@ body {
     padding: 32px;
     border-radius: 20px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 
@@ -55,16 +53,14 @@ h1 {
     height: 140px;
     justify-content: center;
     align-items: center;
-     flex-basis: 23%;
-     background: linear-gradient(160deg, #2e3d49 0%,#374857, #2e3d49 100% );
-     color: #ffffff;
-     border-radius: 8px;
-     cursor: pointer;
-     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    flex-basis: 23%;
+    background: linear-gradient(160deg, #2e3d49 0%,#374857, #2e3d49 100% );
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
     margin-bottom: 10px;
-    font-size: 0;
-
-     
+    font-size: 0;     
 }
 
 
@@ -72,13 +68,12 @@ h1 {
     transform: rotateY(180deg);
     transition: transform 1s;
     pointer-events: none;
-
 }
 
 
 .deck .flip {
+    pointer-events: none;
 
-    cursor: alias;
     font-size: 35px;
     background: linear-gradient(240deg,rgb(52, 136, 247) 0%,rgb(32, 170, 180)50%,rgb(35, 124, 240), rgb(52, 136, 247) 100%);
 }
@@ -87,10 +82,10 @@ h1 {
 .deck .matched {
     background: linear-gradient(240deg, rgb(85, 140, 250) 0%,rgb(139, 232, 255), #4CB1F7 100% );
     cursor: default;
-    font-size: 45px;
+    font-size: 35px;
     box-shadow: none;
     pointer-events: none;
-   color: rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
 }
 
 
@@ -105,9 +100,9 @@ h1 {
     border: 3px solid silver;
     border-radius: 20px;
     margin-top: 20px;
-  margin-left: 20%;
-  height: 70%;
-   width: 65%;
+    margin-left: 20%;
+    height: 70%;
+    width: 65%;
     position: fixed;
     top: 0;
     background-color: white;
@@ -119,7 +114,7 @@ h1 {
 
 #congrats {
     font-size: 25px;
-    margin-top : 70px;
+    margin-top: 70px;
     margin-bottom: 50px;
 }
 
@@ -127,9 +122,16 @@ h1 {
     color: rgb(255, 72, 0);
 }
 
+
 #secondary {
+    border: 0.5px solid rgba(0, 193, 241, 0.719);
+    border-radius: 10px;
     margin-top: 70px;
+    background:linear-gradient(240deg, rgba(85, 140, 250, 0.5) 0%,rgba(139, 232, 255, 0.5), rgba(76, 176, 247, 0.5) 100% );
+    padding: 10px;
 }
+
+
 @media only screen and (max-width: 1024px) {
     .deck {
       width: 90%;
@@ -138,6 +140,8 @@ h1 {
         font-size: 14px;
         width: 100%;
         margin: auto;
+        display: flex;
+    justify-content: space-evenly;
     }
     
   }

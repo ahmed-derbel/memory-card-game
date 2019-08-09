@@ -35,28 +35,32 @@ function stopTimer() {
 
 
   // number of moves 
+  const moves = document.getElementById('moves');
+  var c = 0;
+  function counter(){
+    moves.innerHTML = 'moves: ' + (++c);
+    if(c == 1){
+      second = 0;
+      minute = 0; 
+      hour = 0;
+      startTimer();
+  }
+    removeStar();
+  }
+  
+
+
+// stars system
   const stars = document.getElementById('star');
  function removeStar(){
-  if (c === 10 || c === 18 || c === 24) {
+  if (c === 12 || c === 20 || c === 32) {
     stars.removeChild(stars.lastChild);
   }
  }
 
-  const moves = document.getElementById('moves');
-  var c = 0;
- 
+  
 
 
-function counter(){
-  moves.innerHTML = 'moves: ' + (++c);
-  if(c == 1){
-    second = 0;
-    minute = 0; 
-    hour = 0;
-    startTimer();
-}
-  removeStar();
-}
 
 
 
@@ -78,7 +82,6 @@ restart.forEach(function (res) {res.addEventListener("click",function(){
 
 /* function to set cards backword when restarting using remove classes method */
 function removeClasses() {
-
     for (var i = 0; i < cards.length; i++) {
           cards[i].classList.remove('flip','matched','transformation');
           openedCards.length = 0;
@@ -103,22 +106,30 @@ const cards = document.querySelectorAll(".card");
 cards.forEach(function (card){card.addEventListener("click",flipcard);});
 
 
-// flipping cards and setting game rules
 const correct = new Audio();
  correct.src = "/sounds/matched.mp3"
- correct.volume = 0.2;
-var openedCards = [];
+ correct.volume = 0.3;
+const YouWon = new Audio();
+YouWon.src = "/sounds/win.mp3"
+YouWon.volume = 1;
+const flipBack = new Audio();
+flipBack.src = "/sounds/flipBAck.mp3"
+flipBack.volume = 0.2;
 
+
+// flipping cards and setting game rules
+
+var openedCards = [];
 function flipcard() {
   var len = openedCards.length;
-  openedCards.push(this);          
   if (len < 2) { 
+    openedCards.push(this);          
   this.classList.add('transformation');
   setTimeout(function(_this){ _this.classList.add('flip');},300,this); 
 }
    if(len = 2){
 
-      if(openedCards[0].innerHTML === openedCards[1].innerHTML){
+      if(openedCards[0].innerHTML === openedCards[1].innerHTML && openedCards[0].classList.contains('flip') && openedCards[1].classList.contains('flip')){
           setTimeout(matched,300);
           correct.play();
           counter();
@@ -126,6 +137,7 @@ function flipcard() {
 
       } else {
          setTimeout(unmatched,700);
+         flipBack.play();
          counter();
 
       }
@@ -136,8 +148,10 @@ function flipcard() {
 
 var matching = 0;
 const win = document.getElementById('win');
-const reward = document.getElementById('rewards');
+const reward = document.getElementById('reward');
 
+
+// a function for when the two flipped cards match together
 function  matched(){
   openedCards[0].classList.add('matched');
   openedCards[1].classList.add('matched');
@@ -148,7 +162,7 @@ function  matched(){
     win.style.display = "block";
     stopTimer();
     reward.append('you Won! with ' + c + ' moves in ' + minute+" mins:"+second+" secs and you got " + stars.childElementCount + " out of 3 stars"  );
-
+    YouWon.play();
   }
   
 }
