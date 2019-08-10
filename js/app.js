@@ -129,7 +129,7 @@ function flipcard() {
 }
    if(len = 2){
 
-      if(openedCards[0].innerHTML === openedCards[1].innerHTML && openedCards[0].classList.contains('flip') && openedCards[1].classList.contains('flip')){
+      if(openedCards[0].innerHTML === openedCards[1].innerHTML){
           setTimeout(matched,300);
           correct.play();
           counter();
